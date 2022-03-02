@@ -1,0 +1,20 @@
+Author: Serly Teymoorian 
+-> This game is about guessing a number to match the random number selected by the program 
+-> start the program:
+    -> select a random number between 1-10
+    -> do while (not quit the program)
+    -> if they choose to play the game
+    ->      ask them to choose a number 
+    ->      scanf("%d", userInput)
+    ->      do while loop (not quit the game and not won)
+    ->      if statement to check if userInput == randomNum 
+    ->          yes 
+    ->              Won 
+    ->          no 
+    ->              try until win 
+    ->      end do while 
+    -> if they choose to change the max number 
+    ->      change the initial max number which was 10 
+    -> if they choose to quit -> quit the program 
+    -> end do while loop 
+-> end the program    
