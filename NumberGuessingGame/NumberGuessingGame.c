@@ -33,6 +33,9 @@ int main()
     int randNum; 
     int userInput; 
     bool haveWon; 
+    int numPlayedGames =0; 
+    int numGuess =0;
+    char* numOgGuesses[100]; 
     time_t t; 
     srand((unsigned)time(&t)); 
 
@@ -45,28 +48,35 @@ int main()
 
         if(choose =='1')
         {   
+            ++numPlayedGames; //update the number of games played
             randNum = rand() % maxNum + 1; //choose a num btw 1-maxNum 
             haveWon = false; 
             do
             {
                 printf("Choose a number between 1-%d\n", maxNum); //ask user input 
-                scanf("%d", &userInput); 
+                scanf("%d", &userInput);
+                ++numGuess; //update # of guesses 
+                
                 if(userInput == randNum)
                 {
                     haveWon = true; 
                     printf("You have WON!!\n"); 
+                    sprintf(numOfGuesses[numPlayedGames-1], "%d", numGuess); 
                 }
                 else if(userInput < 1 || userInput > maxNum)
                 {
-                    printf("Wrong input!!\nThe entered the number should be between 1-%d\nPlease Try again\n", maxNum); 
+                    printf("Wrong input!!\nThe entered the number should be between 1-%d\nPlease Try again\n", maxNum);
+                    sprintf(numOfGuesses[numPlayedGames-1], "%d", numGuess); 
                 }
                 else if(userInput == 'q')
                 {
                     printf("You have decided to quit this round of game!!\n"); 
+                    numOfGuesses[numPlayedGames-1] = "Lost the Game!!"; 
                 }
                 else 
                 {
                     printf("Wrong Guess!!\nTry again\n"); 
+                    sprintf(numOfGuesses[numPlayedGames-1], "%d", numGuess); 
                 } 
             } while (!haveWon && userInput != 'q');
         }
@@ -80,6 +90,18 @@ int main()
         else if(choose == '3')
         {
             printf("You have decided to quit our program.\nThank you for choosing our program."); 
+            printf("\nYou have played %d games", numPlayedGames); 
+            
+            for(int game =0; game <numPlayedGames; ++game)
+            {
+                if(strcmp(numOfGuesses[game], "Lost the Game!!") ==0)
+                {
+                    printf("\nFor game number %d:\n%s", game + 1, numOfGuesses[game]); 
+                }
+                else
+                {
+                    printf("\nFor game number %d:\nYou had %s guesses", game + 1, numOfGuesses[game]); 
+            }
         }
         //invalid user input 
         else 
