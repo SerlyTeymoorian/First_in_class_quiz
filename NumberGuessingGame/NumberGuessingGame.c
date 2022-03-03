@@ -36,6 +36,7 @@ int main()
     int numPlayedGames =0; 
     int numGuess =0; 
     char * numOfGuesses[100]; 
+    FILE* saveUserMax; 
     time_t t; 
     srand((unsigned)time(&t)); 
 
@@ -85,6 +86,9 @@ int main()
         {
             printf("What do you want the new max number be? "); 
             scanf("%d", &maxNum); 
+            saveUserMax = fopen("UserMax.txt", "w"); 
+            fprintf(saveUserMax, "User max input is: %d", maxNum);
+            fclose(saveUserMax); 
         }
         //quit the program 
         else if(choose == '3')
